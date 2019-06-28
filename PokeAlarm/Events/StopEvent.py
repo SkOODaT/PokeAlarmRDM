@@ -14,10 +14,16 @@ class StopEvent(BaseEvent):
     def __init__(self, data):
         """ Creates a new Stop Event based on the given dict. """
         super(StopEvent, self).__init__('stop')
-
+        check_for_none = BaseEvent.check_for_none
         # Identification
         self.stop_id = data['pokestop_id']
 
+        # Details
+        self.stop_name = check_for_none(
+            str, data.get('pokestop_name') or data.get('name'), Unknown.REGULAR)
+        self.stop_image = check_for_none(
+            str, data.get('pokestop_url') or data.get('url'), Unknown.REGULAR)
+        self.lure_type_id = int(data.get('lure_id'))
         # Time left
         self.expiration = data['lure_expiration']
         self.time_left = None
@@ -45,7 +51,11 @@ class StopEvent(BaseEvent):
         dts.update({
             # Identification
             'stop_id': self.stop_id,
-
+            # Details
+            'stop_name': self.stop_name,
+            'stop_image': self.stop_image,
+            'lure_type_id': self.lure_type_id,
+            'lure_type_name': locale.get_lure_type_name(self.lure_type_id),
             # Time left
             'time_left': time[0],
             '12h_time': time[1],
