@@ -78,7 +78,7 @@ class RaidEvent(BaseEvent):
 
         # Gym Details (currently only sent from Monocle)
         self.gym_name = check_for_none(
-            str, data.get('name'), Unknown.REGULAR).strip()
+            str, data.get('gym_name'), Unknown.REGULAR).strip()
         self.gym_description = check_for_none(
             str, data.get('description'), Unknown.REGULAR).strip()
         self.gym_image = check_for_none(
@@ -89,7 +89,7 @@ class RaidEvent(BaseEvent):
         self.park = check_for_none(
             str, data.get('park'), Unknown.REGULAR)
         self.ex_eligible = check_for_none(
-            int, data.get('is_ex_raid_eligible'), Unknown.REGULAR)
+            int, data.get('ex_raid_eligible'), Unknown.REGULAR)
 
         # Gym Team (this is only available from cache)
         self.current_team_id = check_for_none(
