@@ -30,13 +30,13 @@ class GymEvent(BaseEvent):
 
         # Gym Details
         self.gym_name = check_for_none(
-            str, data.get('name'), Unknown.REGULAR).strip()
+            str, data.get('gym_name'), Unknown.REGULAR).strip()
         self.gym_description = check_for_none(
             str, data.get('description'), Unknown.REGULAR).strip()
         self.gym_image = check_for_none(
             str, data.get('url'), Unknown.REGULAR)
         self.ex_eligible = check_for_none(
-            int, data.get('is_ex_raid_eligible'), Unknown.REGULAR)
+            int, data.get('ex_raid_eligible'), Unknown.REGULAR)
 
         # Gym Guards
         self.slots_available = check_for_none(
