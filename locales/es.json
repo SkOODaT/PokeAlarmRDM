@@ -1169,9 +1169,9 @@
   },
   "teams": {
     "000": "Neutral",
-    "001": "Sabidur\u00eda",
-    "002": "Valor",
-    "003": "Instinto"
+    "001": "\u2744 Sabiduría",
+    "002": "\uD83D\uDD25 Valor",
+    "003": "\u26A1 Instinto"
   },
   "types": {
     "001": "Normal",
