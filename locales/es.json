@@ -221,10 +221,10 @@
     }
   },
   "leaders": {
-    "000": "Profesor Willow",
-    "001": "Blanche",
-    "002": "Candela",
-    "003": "Spark"
+    "000": "\u25FB Sin lider", 
+    "001": "\u2744 Sabiduría", 
+    "002": "\uD83D\uDD25 Valor", 
+    "003": "\u26A1 Instinto"
   },
   "lure_types": {
     "501": "Est\u00e1ndar",
