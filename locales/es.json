@@ -1194,7 +1194,7 @@
     "018": "Siniestro"
   },
   "weather": {
-    "000": "None",
+    "000": "-",
     "001": "Despejado",
     "002": "Lluvioso",
     "003": "Parcialmente nublado",
