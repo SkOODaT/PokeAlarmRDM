@@ -34,7 +34,7 @@ class MonEvent(BaseEvent):
             int, data.get('spawn_start'), Unknown.REGULAR)
         self.spawn_end = check_for_none(
             int, data.get('spawn_end'), Unknown.REGULAR)
-        self.spawn_verified = check_for_none(bool, data.get('verified'), False)
+        self.spawn_verified = check_for_none(bool, data.get('disappear_time_verified'), False)
 
         # Location
         self.lat = float(data['latitude'])
