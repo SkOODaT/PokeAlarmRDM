@@ -227,10 +227,10 @@
     "003": "\u26A1 Instinto"
   },
   "lure_types": {
-    "501": "Est\u00e1ndar",
-    "502": "Glaciar",
-    "503": "Musgoso",
-    "504": "Magn\u00e9tico"
+    "501": "Normal",
+    "502": "\u2744\ufe0f Glaciar",
+    "503": "\ud83c\udf3f Musgoso",
+    "504": "\u26A1 Magn\u00e9tico"
   },
   "misc": {
     "boosted": "potenciado"
