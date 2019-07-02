@@ -1194,13 +1194,13 @@
     "018": "Siniestro"
   },
   "weather": {
-    "000": "-",
-    "001": "Despejado",
-    "002": "Lluvioso",
-    "003": "Parcialmente nublado",
-    "004": "Cielo cubierto",
-    "005": "Viento",
-    "006": "Nieve",
-    "007": "Niebla"
+    "000": "-", 
+    "001": "Soleado \uD83C\uDF43 ⛰ \uD83D\uDD25", 
+    "002": "Lluvioso \uD83D\uDCA7 ⚡️ \uD83D\uDC1B", 
+    "003": "Parcialmente nublado \u2B55 \uD83D\uDC8E", 
+    "004": "Nublado \uD83D\uDCAB 🥋 ☠️", 
+    "005": "Viento \uD83D\uDC32 \uD83D\uDC26 \uD83D\uDD2E", 
+    "006": "Nieve \u2744 ⚙️", 
+    "007": "Niebla \uD83C\uDF11 \uD83D\uDC7B"
   }
 }
