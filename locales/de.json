@@ -228,9 +228,9 @@
   }, 
   "lure_types": {
     "501": "Standard",
-    "502": "Gletscher",
-    "503": "Moos",
-    "504": "Magnet"
+    "502": "Glacial",
+    "503": "Mossy",
+    "504": "Magnetic"
   },
   "misc": {
     "boosted": "verst\u00e4rktes"
