@@ -97,6 +97,10 @@
       "077": "Normal",
       "078": "Alola"
     },
+    "150": {
+      "133": "Acorazado",
+      "135": "Normal"
+    },
     "201": {
       "001": "A",
       "002": "B",
@@ -417,7 +421,36 @@
     "288": "Psicoataque",
     "289": "Pulso Primigenio",
     "290": "Filo del Abismo",
-    "291": "Presente"
+    "291": "Presente",
+    "292": "Meteorobola Fuego",
+    "293": "Meteorobola Hielo",
+    "294": "Meteorobola Roca",
+    "295": "Meteorobola Agua",
+    "296": "Planta Feroz",
+    "297": "Antiaéreo",
+    "298": "Anillo Ígneo",
+    "299": "Hidrocañon",
+    "300": "Ultima Baza",
+    "301": "Puño Meteoro",
+    "302": "Cabezazo",
+    "303": "Bomba Ácida",
+    "304": "Earth Power",
+    "305": "Tierra Viva",
+    "306": "Plancha",
+    "307": "Garra Brutal",
+    "308": "Pulpocañon",
+    "309": "Disparo Espejo",
+    "310": "Fuerza Bruta",
+    "311": "Aguijón Letal",
+    "312": "Ciclón de hojas",
+    "313": "Chupavidas",
+    "314": "Puño drenaje",
+    "315": "Hueso sombrío",
+    "316": "Agua lodosa",
+    "317": "Patada Ígnea",
+    "318": "Concha Filo",
+    "319": "Puño Incremento",
+    "320": "Encanto"	
   },
   "pokemon": {
     "001": "Bulbasaur",
