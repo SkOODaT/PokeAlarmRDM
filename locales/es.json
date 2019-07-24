@@ -156,13 +156,13 @@
     "351": {
       "029": "Normal",
       "030": "Soleado",
-      "031": "Lluvias",
-      "032": "Cubierto de nieve"
+      "031": "Lluvia",
+      "032": "Nieve"
     },
     "386": {
       "033": "Normal",
       "034": "Ataque",
-      "035": "La defensa",
+      "035": "Defensa",
       "036": "Velocidad"
     },
     "412": {
@@ -176,7 +176,7 @@
       "089": "Basura"
     },
     "421": {
-      "094": "Nublado",
+      "094": "Encapotado",
       "095": "Soleado"
     },
     "422": {
