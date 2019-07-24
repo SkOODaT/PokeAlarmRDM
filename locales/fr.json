@@ -236,6 +236,12 @@
     "503": "Moussu",
     "504": "Magn\u00e9tique"
   },
+  "lure_types": {
+    "501": "Standard",
+    "502": "Glacial",
+    "503": "Moussu",
+    "504": "Magn\u00e9tique"
+  },
   "misc": {
     "boosted": "boost\u00e9"
   },
