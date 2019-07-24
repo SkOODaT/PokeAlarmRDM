@@ -30,7 +30,7 @@ class StopEvent(BaseEvent):
         if self.lure_type_id > 0:
             self.expiration = data['lure_expiration']
         else:
-            self.expiration = data['incident_expiration']
+            self.expiration = data['incident_expire_timestamp']
 
         self.time_left = None
         if self.expiration is not None:
