@@ -17,12 +17,12 @@ class InvasionEvent(BaseEvent):
         check_for_none = BaseEvent.check_for_none
 
         # Identification
-        self.stop_id = data['pokestop_id']
+        self.invasion_id = data['pokestop_id']
         
         # Details
-        self.stop_name = check_for_none(
+        self.invasion_name = check_for_none(
             str, data.get('pokestop_name') or data.get('name'), Unknown.REGULAR)
-        self.stop_image = check_for_none(
+        self.invasion_image = check_for_none(
             str, data.get('pokestop_url') or data.get('url'), Unknown.REGULAR)
         #self.pokemon_id = check_for_none(int, data.get('pokemon_id'), 0)
 
@@ -43,7 +43,7 @@ class InvasionEvent(BaseEvent):
         self.direction = Unknown.TINY
 
         # Used to reject
-        self.name = self.stop_id
+        self.name = self.invasion_id
         self.geofence = Unknown.REGULAR
         self.custom_dts = {}
 
@@ -53,11 +53,11 @@ class InvasionEvent(BaseEvent):
         dts = self.custom_dts.copy()
         dts.update({
             # Identification
-            'stop_id': self.stop_id,
+            'invasion_id': self.invasion_id,
             
             # Details
-            'stop_name': self.stop_name,
-            'stop_image': self.stop_image,
+            'invasion_name': self.invasion_name,
+            'invasion_image': self.invasion_image,
 
             # Time left
             'time_left': time[0],
