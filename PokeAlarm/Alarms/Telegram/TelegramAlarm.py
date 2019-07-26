@@ -232,7 +232,7 @@ class TelegramAlarm(Alarm):
     def pokestop_alert(self, stop_dts):
         self.generic_alert(self._stop_alert, stop_dts)
 
-    def invasion_alert(self, stop_dts):
+    def invasion_alert(self, invasion_dts):
         self.generic_alert(self._invasion_alert, invasion_dts)
 
     # Trigger an alert based on Pokestop info
