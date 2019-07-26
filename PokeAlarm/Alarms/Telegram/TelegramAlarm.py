@@ -41,8 +41,8 @@ class TelegramAlarm(Alarm):
             'sticker_url': get_image_url("telegram/stop/ready.webp")
         },
         'invasion': {
-            'message': "*Someone has placed a lure on a Pokestop!*\n"
-                       "Lure will expire at <24h_time> (<time_left>).",
+            'message': "*Invasion en <invasion_name>!*\n"
+                       "Hasta las <24h_time> (<time_left>.",
             'sticker_url': get_image_url("telegram/invasion/ready.webp")
         },
         'gyms': {
