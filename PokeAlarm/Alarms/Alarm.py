@@ -48,9 +48,6 @@ class Alarm(object):
     def pokestop_alert(self, pokelure_info):
         raise NotImplementedError("This is an abstract method.")
 
-    def invasion_alert(self, invasion_info):
-        raise NotImplementedError("This is an abstract method.")
-
     # Trigger an alert based on PokeGym info
     def gym_alert(self, pokegym_info):
         raise NotImplementedError("This is an abstract method.")
