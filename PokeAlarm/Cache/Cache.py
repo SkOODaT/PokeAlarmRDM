@@ -21,6 +21,7 @@ class Cache(object):
 
         self._mon_hist = {}
         self._stop_hist = {}
+        self._invasion_hist = {}
         self._egg_hist = {}
         self._raid_hist = {}
         self._quest_hist = {}
@@ -133,7 +134,7 @@ class Cache(object):
     def _clean_hist(self):
         """ Clean expired objects to free up memory. """
         for hist in (
-                self._mon_hist, self._stop_hist, self._egg_hist,
+                self._mon_hist, self._stop_hist, self._invasion_hist, self._egg_hist,
                 self._raid_hist, self._quest_hist):
             old = []
             now = datetime.utcnow()
