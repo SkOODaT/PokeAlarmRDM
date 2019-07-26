@@ -118,6 +118,8 @@ class TelegramAlarm(Alarm):
             'monsters', settings, alert_defaults)
         self._stop_alert = self.create_alert_settings(
             'stops', settings, alert_defaults)
+        self._invasion_alert = self.create_alert_settings(
+            'invasion', settings, alert_defaults)
         self._gym_alert = self.create_alert_settings(
             'gyms', settings, alert_defaults)
         self._egg_alert = self.create_alert_settings(
