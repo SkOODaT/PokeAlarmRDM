@@ -55,6 +55,13 @@ def parse_filters_file(mgr, filename):
         filters = parse_filter_section(section)
         for name, f in filters.iteritems():
             mgr.add_stop_filter(name, f)
+            
+        # Load Invasion Section
+        section = filters_file.pop('invasion', {'enabled': False})
+        mgr.set_invasion_enabled(section.pop('enabled', True))
+        filters = parse_filter_section(section)
+        for name, f in filters.iteritems():
+            mgr.add_invasion_filter(name, f)
 
         # Load Gyms Section
         section = filters_file.pop('gyms', {'enabled': False})
@@ -181,6 +188,8 @@ def parse_rules_file(manager, filename):
         load_rules_section(manager.add_monster_rule, rules.pop('monsters', {}))
         log.debug("Parsing 'stops' section.")
         load_rules_section(manager.add_stop_rule, rules.pop('stops', {}))
+        log.debug("Parsing 'invasion' section.")
+        load_rules_section(manager.add_invasion_rule, rules.pop('invasion', {}))
         log.debug("Parsing 'gyms' section.")
         load_rules_section(manager.add_gym_rule, rules.pop('gyms', {}))
         log.debug("Parsing 'eggs' section.")
