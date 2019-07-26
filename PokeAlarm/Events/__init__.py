@@ -4,6 +4,7 @@ import traceback
 from BaseEvent import BaseEvent  # noqa F401
 from MonEvent import MonEvent
 from StopEvent import StopEvent
+from InvasionEvent import InvasionEvent
 from GymEvent import GymEvent
 from EggEvent import EggEvent
 from RaidEvent import RaidEvent
