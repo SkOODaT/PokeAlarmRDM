@@ -256,7 +256,7 @@ class Manager(object):
             raise ValueError("Unable to add Invasion Filter: Filter with the "
                              "name {} already exists!".format(name))
         f = Filters.InvasionFilter(self, name, settings)
-        self._Invasion_filters[name] = f
+        self._invasion_filters[name] = f
         self._log.debug("Invasion filter '%s' set: %s", name, f)
 
     # Enable/Disable Gym notifications
@@ -783,7 +783,7 @@ class Manager(object):
         seconds_left = (invasion.expiration - datetime.utcnow()).total_seconds()
         if seconds_left < self.__time_limit:
             self._log.debug("Invasion {} was skipped because only {} seconds "
-                            "remained".format(stop.name, seconds_left))
+                            "remained".format(invasion.name, seconds_left))
             return
 
         # Calculate distance and direction
@@ -807,14 +807,14 @@ class Manager(object):
                 rule_ct += 1
                 alarm_ct += len(rule.alarm_names)
                 self._notify_alarms(
-                    invasion, rule.alarm_names, 'pokestop_alert')
+                    invasion, rule.alarm_names, 'invasion_alert')
 
         if rule_ct > 0:
             self._rule_log.info(
                 'Invasion %s passed %s rule(s) and triggered %s alarm(s).',
                 invasion.name, rule_ct, alarm_ct)
         else:
-            self._rule_log.info('Invasion %s rejected by all rules.', stop.name)
+            self._rule_log.info('Invasion %s rejected by all rules.', invasion.name)
             
     def process_gym(self, gym):
         # type: (Events.GymEvent) -> None
