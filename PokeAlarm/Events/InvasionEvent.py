@@ -8,12 +8,12 @@ from PokeAlarm.Utils import get_gmaps_link, get_applemaps_link, \
     get_waze_link, get_time_as_str, get_seconds_remaining, get_dist_as_str
 
 
-class StopEvent(BaseEvent):
+class InvasionEvent(BaseEvent):
     """ Event representing the discovery of a PokeStop. """
 
     def __init__(self, data):
         """ Creates a new Stop Event based on the given dict. """
-        super(StopEvent, self).__init__('stop')
+        super(InvasionEvent, self).__init__('invasion')
         check_for_none = BaseEvent.check_for_none
 
         # Identification
@@ -24,13 +24,10 @@ class StopEvent(BaseEvent):
             str, data.get('pokestop_name') or data.get('name'), Unknown.REGULAR)
         self.stop_image = check_for_none(
             str, data.get('pokestop_url') or data.get('url'), Unknown.REGULAR)
-        self.lure_type_id = check_for_none(int, data.get('lure_id'), 0)
+        #self.pokemon_id = check_for_none(int, data.get('pokemon_id'), 0)
 
         # Time left
-        if self.lure_type_id > 0:
-            self.expiration = data['lure_expiration']
-        else:
-            self.expiration = data['incident_expire_timestamp']
+        self.expiration = data['incident_expire_timestamp']
 
         self.time_left = None
         if self.expiration is not None:
@@ -61,8 +58,6 @@ class StopEvent(BaseEvent):
             # Details
             'stop_name': self.stop_name,
             'stop_image': self.stop_image,
-            'lure_type_id': self.lure_type_id,
-            'lure_type_name': locale.get_lure_type_name(self.lure_type_id),
 
             # Time left
             'time_left': time[0],
