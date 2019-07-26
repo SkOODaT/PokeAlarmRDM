@@ -45,7 +45,13 @@ class Cache(object):
         if expiration is not None:
             self._stop_hist[stop_id] = expiration
         return self._stop_hist.get(stop_id)
-
+        
+    def invasion_expiration(self, invasion_id, expiration=None):
+        """ Update and return the datetime that a invasion expires."""
+        if expiration is not None:
+            self._invasion_hist[invasion_id] = expiration
+        return self._invasion_hist.get(invasion_id)
+        
     def egg_expiration(self, egg_id, expiration=None):
         """ Update and return the datetime that an egg expires."""
         if expiration is not None:
