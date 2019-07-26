@@ -3,7 +3,6 @@ import operator
 # 3rd Party Imports
 # Local Imports
 from . import BaseFilter
-from PokeAlarm.Utilities import InvasionUtils as InvasionUtils
 
 
 class InvasionFilter(BaseFilter):
