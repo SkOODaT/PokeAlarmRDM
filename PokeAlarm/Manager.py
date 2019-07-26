@@ -68,6 +68,7 @@ class Manager(object):
         # Load and Setup the Pokemon Filters
         self._mons_enabled, self._mon_filters = False, OrderedDict()
         self._stops_enabled, self._stop_filters = False, OrderedDict()
+        self._invasion_enabled, self._invasion_filters = False, OrderedDict()
         self._gyms_enabled, self._gym_filters = False, OrderedDict()
         self._ignore_neutral = False
         self._eggs_enabled, self._egg_filters = False, OrderedDict()
@@ -86,6 +87,7 @@ class Manager(object):
         # Initialize Rules
         self.__mon_rules = {}
         self.__stop_rules = {}
+        self.__invasion_rules = {}
         self.__gym_rules = {}
         self.__egg_rules = {}
         self.__raid_rules = {}
@@ -241,6 +243,21 @@ class Manager(object):
         f = Filters.StopFilter(self, name, settings)
         self._stop_filters[name] = f
         self._log.debug("Stop filter '%s' set: %s", name, f)
+        
+    # Enable/Disable Invasion notifications
+    def set_invasion_enabled(self, boolean):
+        self._invasion_enabled = parse_bool(boolean)
+        self._log.debug("Invasion notifications %s!",
+                        "enabled" if self._invasion_enabled else "disabled")
+
+    # Add new Invasion Filter
+    def add_invasion_filter(self, name, settings):
+        if name in self._invasion_filters:
+            raise ValueError("Unable to add Invasion Filter: Filter with the "
+                             "name {} already exists!".format(name))
+        f = Filters.InvasionFilter(self, name, settings)
+        self._Invasion_filters[name] = f
+        self._log.debug("Invasion filter '%s' set: %s", name, f)
 
     # Enable/Disable Gym notifications
     def set_gyms_enabled(self, boolean):
@@ -373,6 +390,24 @@ class Manager(object):
                                  "named {}!".format(alarm))
 
         self.__stop_rules[name] = Rule(filters, alarms)
+        
+    # Add new Invasion Rule
+    def add_invasion_rule(self, name, filters, alarms):
+        if name in self.__invasion_rules:
+            raise ValueError("Unable to add Rule: Invasion Rule with the name "
+                             "{} already exists!".format(name))
+
+        for filt in filters:
+            if filt not in self._invasion_filters:
+                raise ValueError("Unable to create Rule: No Invasion Filter "
+                                 "named {}!".format(filt))
+
+        for alarm in alarms:
+            if alarm not in self._alarms:
+                raise ValueError("Unable to create Rule: No Alarm "
+                                 "named {}!".format(alarm))
+
+        self.__invasion_rules[name] = Rule(filters, alarms)
 
     # Add new Gym Rule
     def add_gym_rule(self, name, filters, alarms):
@@ -521,6 +556,8 @@ class Manager(object):
                     self.process_monster(event)
                 elif kind == Events.StopEvent:
                     self.process_stop(event)
+                elif kind == Events.InvasionEvent:
+                    self.process_invasion(event)
                 elif kind == Events.GymEvent:
                     self.process_gym(event)
                 elif kind == Events.EggEvent:
@@ -725,7 +762,60 @@ class Manager(object):
                 stop.name, rule_ct, alarm_ct)
         else:
             self._rule_log.info('Stop %s rejected by all rules.', stop.name)
+            
+    def process_invasion(self, invasion):
+        # type: (Events.InvasionEvent) -> None
+        """ Process a stop event and notify alarms if it passes. """
 
+        # Make sure that stops are enabled
+        if self._invasion_enabled is False:
+            self._log.debug("Invasion ignored: stop notifications are disabled.")
+            return
+
+        # Check if previously processed and update expiration
+        if self.__cache.invasion_expiration(str(invasion.invasion_id) is not None:
+            self._log.debug("Invasion {} was skipped because it was "
+                            "previously processed.".format(invasion.name))
+            return
+        self.__cache.invasion_expiration(str(invasion.invasion_id), invasion.expiration)
+
+        # Check the time remaining
+        seconds_left = (invasion.expiration - datetime.utcnow()).total_seconds()
+        if seconds_left < self.__time_limit:
+            self._log.debug("Invasion {} was skipped because only {} seconds "
+                            "remained".format(stop.name, seconds_left))
+            return
+
+        # Calculate distance and direction
+        if self.__location is not None:
+            invasion.distance = get_earth_dist(
+                [invasion.lat, invasion.lng], self.__location, self.__units)
+            invasion.direction = get_cardinal_dir(
+                [invasion.lat, invasion.lng], self.__location)
+
+        # Check for Rules
+        rules = self.__invasion_rules
+        if len(rules) == 0:  # If no rules, default to all
+            rules = {"default": Rule(
+                self._invasion_filters.keys(), self._alarms.keys())}
+
+        rule_ct, alarm_ct = 0, 0
+        for r_name, rule in rules.iteritems():  # For all rules
+            passed = self._check_filters(
+                invasion, self._invasion_filters, rule.filter_names)
+            if passed:
+                rule_ct += 1
+                alarm_ct += len(rule.alarm_names)
+                self._notify_alarms(
+                    invasion, rule.alarm_names, 'pokestop_alert')
+
+        if rule_ct > 0:
+            self._rule_log.info(
+                'Invasion %s passed %s rule(s) and triggered %s alarm(s).',
+                invasion.name, rule_ct, alarm_ct)
+        else:
+            self._rule_log.info('Invasion %s rejected by all rules.', stop.name)
+            
     def process_gym(self, gym):
         # type: (Events.GymEvent) -> None
         """ Process a gym event and notify alarms if it passes. """
