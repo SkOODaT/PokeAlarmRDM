@@ -727,7 +727,7 @@ class Manager(object):
         self.__cache.stop_expiration(str(stop.stop_id) + str(stop.lure_type_id), stop.expiration)
         
         # Check if previously processed and update expiration
-        if self.__cache.invasion_expiration(str(invasion.invasion_id) + str(invasion.lure_type_id)) is not None:
+        if self.__cache.invasion_expiration(str(invasion.invasion_id) + str(invasion.invasion_type_id)) is not None:
             self._log.debug("Invasion {} was skipped because it was "
                             "previously processed.".format(invasion.name))
             return
