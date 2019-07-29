@@ -65,7 +65,7 @@ class InvasionEvent(BaseEvent):
 
             #type
             'invasion_type_id': self.invasion_type_id,
-            'invasion_type_name': locale.get_invasion_type_name(self.invasion_type_id)
+            'invasion_type_name': locale.get_invasion_type_name(self.invasion_type_id),
             # Time left
             'time_left': time[0],
             '12h_time': time[1],
