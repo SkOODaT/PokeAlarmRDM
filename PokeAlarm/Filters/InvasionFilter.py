@@ -19,6 +19,18 @@ class InvasionFilter(BaseFilter):
         self.max_dist = self.evaluate_attribute(  # f.max_dist <= m.distance
             event_attribute='distance', eval_func=operator.ge,
             limit=BaseFilter.parse_as_type(float, 'max_dist', data))
+            
+        # Types
+        self.invasion_ids = self.evaluate_attribute(
+            event_attribute='invasion_type_id', eval_func=operator.contains,
+            limit=BaseFilter.parse_as_set(
+                StopUtils.get_invasion_id, 'invasion', data))
+        # Exclude Lures
+        self.exclude_invasion_ids = self.evaluate_attribute(
+            event_attribute='invasion_type_id',
+            eval_func=lambda d, v: not operator.contains(d, v),
+            limit=BaseFilter.parse_as_set(
+                StopUtils.get_invasion_id, 'invasion_exclude', data))
 
         # Time Left
         self.min_time_left = self.evaluate_attribute(
@@ -55,6 +67,10 @@ class InvasionFilter(BaseFilter):
             settings['min_dist'] = self.min_dist
         if self.max_dist is not None:
             settings['max_dist'] = self.max_dist
+            
+        # Types
+        if self.invasion_ids is not None:
+            settings['invasion_ids'] = self.invasion_ids
 
         # Geofences
         if self.geofences is not None:
