@@ -6,7 +6,6 @@ from . import BaseFilter
 from PokeAlarm.Utilities import InvasionUtils as InvasionUtils
 
 class InvasionFilter(BaseFilter):
-    """ Filter class for limiting which stops trigger a notification. """
 
     def __init__(self, mgr, name, data):
         """ Initializes base parameters for a filter. """
@@ -24,13 +23,13 @@ class InvasionFilter(BaseFilter):
         self.invasion_ids = self.evaluate_attribute(
             event_attribute='invasion_type_id', eval_func=operator.contains,
             limit=BaseFilter.parse_as_set(
-                StopUtils.get_invasion_id, 'invasion', data))
+                InvasionUtils.get_invasion_id, 'invasion', data))
         # Exclude Lures
         self.exclude_invasion_ids = self.evaluate_attribute(
             event_attribute='invasion_type_id',
             eval_func=lambda d, v: not operator.contains(d, v),
             limit=BaseFilter.parse_as_set(
-                StopUtils.get_invasion_id, 'invasion_exclude', data))
+                InvasionUtils.get_invasion_id, 'invasion_exclude', data))
 
         # Time Left
         self.min_time_left = self.evaluate_attribute(
