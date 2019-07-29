@@ -25,7 +25,11 @@ class InvasionEvent(BaseEvent):
         self.invasion_image = check_for_none(
             str, data.get('pokestop_url') or data.get('url'), Unknown.REGULAR)
         #self.pokemon_id = check_for_none(int, data.get('pokemon_id'), 0)
-
+        
+        #type
+        self.invasion_type_id = check_for_none(
+            str, data.get('grunt_type'), 0)
+        
         # Time left
         self.expiration = data['incident_expire_timestamp']
 
@@ -59,6 +63,9 @@ class InvasionEvent(BaseEvent):
             'invasion_name': self.invasion_name,
             'invasion_image': self.invasion_image,
 
+            #type
+            'invasion_type_id': self.invasion_type_id,
+            'invasion_type': locale.get_invasion_type(self.invasion_type_id)
             # Time left
             'time_left': time[0],
             '12h_time': time[1],
