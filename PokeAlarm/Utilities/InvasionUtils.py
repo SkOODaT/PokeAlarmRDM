@@ -23,4 +23,4 @@ def get_invasion_id(invasion_name):
             return int(name)  # try as an integer
     except ValueError:
         raise ValueError("Unable to interpret `{}` as a valid "
-                         " invasion name or id.".format(lure_name))
+                         " invasion name or id.".format(invasion_name))
