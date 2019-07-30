@@ -726,14 +726,6 @@ class Manager(object):
             return
         self.__cache.stop_expiration(str(stop.stop_id) + str(stop.lure_type_id), stop.expiration)
         
-        # Check if previously processed and update expiration
-        if self.__cache.invasion_expiration(str(invasion.invasion_id) + str(invasion.invasion_type_id)) is not None:
-            self._log.debug("Invasion {} was skipped because it was "
-                            "previously processed.".format(invasion.name))
-            return
-        self.__cache.invasion_expiration(str(invasion.invasion_id) + str(invasion.invasion_type_id), invasion.expiration)
-
-
         # Check the time remaining
         seconds_left = (stop.expiration - datetime.utcnow()).total_seconds()
         if seconds_left < self.__time_limit:
