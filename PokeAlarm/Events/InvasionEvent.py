@@ -28,7 +28,7 @@ class InvasionEvent(BaseEvent):
         
         #type
         self.invasion_type_id = check_for_none(
-            str, data.get('grunt_type'), 0)
+            int, data.get('grunt_type'), 0)
         
         # Time left
         self.expiration = data['incident_expire_timestamp']
