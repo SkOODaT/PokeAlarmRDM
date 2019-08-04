@@ -41,6 +41,15 @@ class DiscordAlarm(Alarm):
             'url': "<gmaps>",
             'body': "Lure will expire at <24h_time> (<time_left>)."
         },
+        'invasions': {
+            'username': "Invasion",
+            'content': "",
+            'icon_url': get_image_url("regular/invasion/ready.png"),
+            'avatar_url': get_image_url("regular/invasion/ready.png"),
+            'title': "New Team Rocket invasion!",
+            'url': "<gmaps>",
+            'body': "Expire at <24h_time> (<time_left>)."
+        },
         'gyms': {
             'username': "<new_team> Gym Alerts",
             'content': "",
@@ -116,6 +125,8 @@ class DiscordAlarm(Alarm):
             settings.pop('monsters', {}), self._defaults['monsters'])
         self.__stops = self.create_alert_settings(
             settings.pop('stops', {}), self._defaults['stops'])
+        self.__invasions = self.create_alert_settings(
+            settings.pop('invasions', {}), self._defaults['invasions'])
         self.__gyms = self.create_alert_settings(
             settings.pop('gyms', {}), self._defaults['gyms'])
         self.__eggs = self.create_alert_settings(
@@ -210,6 +221,11 @@ class DiscordAlarm(Alarm):
     def pokestop_alert(self, pokestop_info):
         self._log.debug("Pokestop notification triggered.")
         self.send_alert(self.__stops, pokestop_info)
+
+    # Trigger an alert based on Invasion info
+    def invasion_alert(self, invasion_info):
+        self._log.debug("Invasion notification triggered.")
+        self.send_alert(self.__invasions, invasion_info)
 
     # Trigger an alert based on Pokestop info
     def gym_alert(self, gym_info):

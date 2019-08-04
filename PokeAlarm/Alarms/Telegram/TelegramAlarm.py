@@ -40,6 +40,11 @@ class TelegramAlarm(Alarm):
                        "Lure will expire at <24h_time> (<time_left>).",
             'sticker_url': get_image_url("telegram/stop/ready.webp")
         },
+        'invasion': {
+            'message': "*Invasion en <invasion_name>!*\n"
+                       "Hasta las <24h_time> (<time_left>.",
+            'sticker_url': get_image_url("telegram/invasion/ready.webp")
+        },
         'gyms': {
             'message': "*A Team <old_team> gym has fallen!*\n"
                        "It is now controlled by <new_team>.",
@@ -113,6 +118,8 @@ class TelegramAlarm(Alarm):
             'monsters', settings, alert_defaults)
         self._stop_alert = self.create_alert_settings(
             'stops', settings, alert_defaults)
+        self._invasion_alert = self.create_alert_settings(
+            'invasion', settings, alert_defaults)
         self._gym_alert = self.create_alert_settings(
             'gyms', settings, alert_defaults)
         self._egg_alert = self.create_alert_settings(
@@ -224,6 +231,9 @@ class TelegramAlarm(Alarm):
     # Trigger an alert based on Pokestop info
     def pokestop_alert(self, stop_dts):
         self.generic_alert(self._stop_alert, stop_dts)
+
+    def invasion_alert(self, invasion_dts):
+        self.generic_alert(self._invasion_alert, invasion_dts)
 
     # Trigger an alert based on Pokestop info
     def gym_alert(self, gym_dts):

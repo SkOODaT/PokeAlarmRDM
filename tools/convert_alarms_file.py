@@ -8,6 +8,7 @@ def exchange(key):
     return {
         "pokemon": "monsters",
         "pokestop": "stops",
+        "invasion": "invasion",
         "gym": "gyms",
         "egg": "eggs",
         "raid": "raids",

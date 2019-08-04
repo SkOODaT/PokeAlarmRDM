@@ -115,6 +115,12 @@ class Locale(object):
         for id_, val in default['lure_types'].iteritems():
             self.__lure_type_names[int(id_)] = lure_types.get(id_, val)
 
+        # Invasion Type ID -> Invasion Type Name
+        self.__invasion_type_names = {}
+        invasion_types = info.get('invasion_types', {})
+        for id_, val in default['invasion_types'].iteritems():
+            self.__invasion_type_names[int(id_)] = invasion_types.get(id_, val)
+
         log.debug("Loaded '{}' locale successfully!".format(language))
 
         self.__misc = info.get('misc', {})
@@ -174,3 +180,6 @@ class Locale(object):
 
     def get_lure_type_name(self, lure_type_id):
         return self.__lure_type_names.get(lure_type_id, 'unknown')
+        
+    def get_invasion_type_name(self, invasion_type_id):
+        return self.__invasion_type_names.get(invasion_type_id, 'unknown')

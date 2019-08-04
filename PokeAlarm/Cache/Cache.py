@@ -21,6 +21,7 @@ class Cache(object):
 
         self._mon_hist = {}
         self._stop_hist = {}
+        self._invasion_hist = {}
         self._egg_hist = {}
         self._raid_hist = {}
         self._quest_hist = {}
@@ -45,7 +46,13 @@ class Cache(object):
         if expiration is not None:
             self._stop_hist[stop_id] = expiration
         return self._stop_hist.get(stop_id)
-
+        
+    def invasion_expiration(self, invasion_id, expiration=None):
+        """ Update and return the datetime that a invasion expires."""
+        if expiration is not None:
+            self._invasion_hist[invasion_id] = expiration
+        return self._invasion_hist.get(invasion_id)
+        
     def egg_expiration(self, egg_id, expiration=None):
         """ Update and return the datetime that an egg expires."""
         if expiration is not None:
@@ -127,7 +134,7 @@ class Cache(object):
     def _clean_hist(self):
         """ Clean expired objects to free up memory. """
         for hist in (
-                self._mon_hist, self._stop_hist, self._egg_hist,
+                self._mon_hist, self._stop_hist, self._invasion_hist, self._egg_hist,
                 self._raid_hist, self._quest_hist):
             old = []
             now = datetime.utcnow()
