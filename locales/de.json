@@ -1216,9 +1216,9 @@
 	},
 	"teams": {
 		"000": "Neutral",
-		"001": "Weisheit",
-		"002": "Wagemut",
-		"003": "Intuition"
+		"001": "\u2744 Weisheit",
+		"002": "\uD83D\uDD25 Wagemut",
+		"003": "\u26A1 Intuition"
 	},
 	"types": {
 		"001": "Normal",
