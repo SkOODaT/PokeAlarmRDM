@@ -1242,12 +1242,12 @@
 	},
 	"weather": {
 		"000": "Keins",
-		"001": "Klar",
-		"002": "Regen",
-		"003": "Teilweise bew\u00f6lkt",
-		"004": "Bedeckt",
-		"005": "Windig",
-		"006": "Schnee",
-		"007": "Nebel"
+		"001": "Klar \uD83C\uDF43 ⛰ \uD83D\uDD25",
+		"002": "Regen \uD83D\uDCA7 ⚡️ \uD83D\uDC1B",
+		"003": "Teilweise bew\u00f6lkt \u2B55 \uD83D\uDC8E",
+		"004": "Bedeckt \uD83D\uDCAB 🥋 ☠️",
+		"005": "Windig \uD83D\uDC32 \uD83D\uDC26 \uD83D\uDD2E",
+		"006": "Schnee \u2744 ⚙️",
+		"007": "Nebel \uD83C\uDF11 \uD83D\uDC7B"
 	}
 }
