@@ -1274,13 +1274,13 @@
     "018": "Noturno"
   },
   "weather": {
-    "000": "Boost: Nenhum", 
-    "001": "Boost: ☀ Limpo 🍃 ⛰ 🔥", 
-    "002": "Boost: ☔️ Chuvoso 💧 ⚡️ 🐛", 
-    "003": "Boost: ⛅️ Parcialmente nublado ⭕ 💎", 
-    "004": "Boost: ☁ Nublado 💫 🥋 ☠️", 
-    "005": "Boost: 🌪 Ventos fortes 🐲 🐦 🔮", 
-    "006": "Boost: ☃ Neve ❄ ⚙️", 
-    "007": "Boost: 🌁 Neblina 🌑 👻"
+    "000": "*Boost:* Nenhum", 
+    "001": "*Boost:* ☀ Limpo 🍃 ⛰ 🔥", 
+    "002": "*Boost:* ☔️ Chuvoso 💧 ⚡️ 🐛", 
+    "003": "*Boost:* ⛅️ Parcialmente nublado ⭕ 💎", 
+    "004": "*Boost:* ☁ Nublado 💫 🥋 ☠️", 
+    "005": "*Boost:* 🌪 Ventos fortes 🐲 🐦 🔮", 
+    "006": "*Boost:* ☃ Neve ❄ ⚙️", 
+    "007": "*Boost:* 🌁 Neblina 🌑 👻"
   }
 }
